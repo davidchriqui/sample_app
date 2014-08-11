@@ -80,4 +80,6 @@ SampleApp::Application.configure do
   
   
   config.i18n.available_locales = :fr
+  
+  config.force_ssl = true
 end
