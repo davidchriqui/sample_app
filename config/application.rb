@@ -27,5 +27,7 @@ module SampleApp
 	config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
 	
 	config.i18n.default_locale = :fr
+	
+	config.assets.enabled = true
   end
 end
