@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
   
   def new
@@ -20,7 +21,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)    # Not the final implementation!
     if @user.save
       sign_in @user
-      flash[:success] = "Bienvenue sur Prete-moi ton chat !"
+      flash[:success] = "Bienvenue sur CodeWire."
       redirect_to @user
     else
       render 'new'
@@ -52,10 +53,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation)
     end
     
-    def signed_in_user
-      store_location
-      redirect_to signin_url, notice: "Vous devez etre connecte pour acceder a ce contenu." unless signed_in?
-    end
+    
     
     def correct_user
       @user = User.find(params[:id])
